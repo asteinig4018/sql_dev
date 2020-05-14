@@ -47,6 +47,15 @@ def import_routes():
         print(f"Added a route from {source_airport} to {destination_airport} with {airline}.")
     db.commit()
 
+def import_airports():
+    f=open("data/airports.dat")
+    reader = csv.reader(f)
+    for in reader:
+        db.execute(,
+        {})
+        print(f"")
+    db.commit()
+
 
 def main():
     #import_planes()
