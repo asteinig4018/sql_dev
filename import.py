@@ -87,5 +87,4 @@ def main():
     import_routes()
     import_airports()
 
-if __name__ == "__main__":
-    main()
+main()
