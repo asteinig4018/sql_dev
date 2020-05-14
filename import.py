@@ -38,11 +38,21 @@ def import_countries():
         print(f"Added {name} {iso_code}.")
     db.commit()
 
+def import_routes():
+    f=open("data/routes.dat")
+    reader = csv.reader(f)
+    for airline, airline_id, source_airport, source_airport_id, destination_airport, destination_airport_id, codeshare, stops, equipment in reader:
+        db.execute("INSERT INTO routes (airline, airline_id, source_airport, source_airport_id, destination_airport, destination_airport_id, codeshare, stops, equipment) VALUES(:airline, :airline_id, :source_airport, :source_airport_id, :destination_airport, :destination_airport_id, :codeshare, :stops, :equipment)",
+        {"airline":airline, "airline_id":airline_id, "source_airport":source_airport, "source_airport_id":source_airport_id, "destination_airport":destination_airport, "destination_airport_id":destination_airport_id, "codeshare":codeshare, "stops":stops, "equipment":equipment})
+        print(f"Added a route from {source_airport} to {destination_airport} with {airline}.")
+    db.commit()
+
 
 def main():
     #import_planes()
     #import_airlines()
-    import_countries()
+    #import_countries()
+    import_routes()
 
 
 if __name__ == "__main__":
