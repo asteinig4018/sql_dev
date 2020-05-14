@@ -1,3 +1,11 @@
+'''
+Import program
+
+Imports all data into the database configured with the URI in config.py
+suggested to run as:
+python import.py > output.txt
+as output is very long
+'''
 import os
 import csv
 
@@ -73,10 +81,10 @@ def import_airports():
 
 
 def main():
-    #import_planes()
-    #import_airlines()
-    #import_countries()
-    #import_routes()
+    import_planes()
+    import_airlines()
+    import_countries()
+    import_routes()
     import_airports()
 
 if __name__ == "__main__":
