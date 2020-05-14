@@ -42,6 +42,13 @@ def import_routes():
     f=open("data/routes.dat")
     reader = csv.reader(f)
     for airline, airline_id, source_airport, source_airport_id, destination_airport, destination_airport_id, codeshare, stops, equipment in reader:
+        if destination_airport_id == '\\N':
+            destination_airport_id = None
+        if source_airport_id == '\\N':
+            source_airport_id = None
+        if airline_id == '\\N':
+            airline_id = None
+        #print(f"dest: {destination_airport_id} source: {source_airport_id}")
         db.execute("INSERT INTO routes (airline, airline_id, source_airport, source_airport_id, destination_airport, destination_airport_id, codeshare, stops, equipment) VALUES(:airline, :airline_id, :source_airport, :source_airport_id, :destination_airport, :destination_airport_id, :codeshare, :stops, :equipment)",
         {"airline":airline, "airline_id":airline_id, "source_airport":source_airport, "source_airport_id":source_airport_id, "destination_airport":destination_airport, "destination_airport_id":destination_airport_id, "codeshare":codeshare, "stops":stops, "equipment":equipment})
         print(f"Added a route from {source_airport} to {destination_airport} with {airline}.")
@@ -50,10 +57,18 @@ def import_routes():
 def import_airports():
     f=open("data/airports.dat")
     reader = csv.reader(f)
-    for in reader:
-        db.execute(,
-        {})
-        print(f"")
+    for id, name, city, country, iata_code, icao_code, latitude, longitude, altitude, timezone, dst, tz_type, hub_type, source in reader:
+        if iata_code == '\\N':
+            iata_code=None
+        if timezone == '\\N':
+            timezone=None
+        if dst == '\\N':
+            dst=None
+        if tz_type =='\\N':
+            tz_type=None
+        db.execute("INSERT INTO airports (id, name, city, country, iata_code, icao_code, latitude, longitude, altitude, timezone, dst, tz_type, source) VALUES(:id, :name, :city, :country, :iata_code, :icao_code, :latitude, :longitude, :altitude, :timezone, :dst, :tz_type, :source)",
+        {"id":id, "name":name, "city":city, "country":country, "iata_code":iata_code, "icao_code":icao_code, "latitude":latitude, "longitude":longitude, "altitude":altitude, "timezone":timezone, "dst":dst, "tz_type":tz_type, "source":source})
+        print(f"Added {name} in {city}, {country} at elevation {altitude}.")
     db.commit()
 
 
@@ -61,8 +76,8 @@ def main():
     #import_planes()
     #import_airlines()
     #import_countries()
-    import_routes()
-
+    #import_routes()
+    import_airports()
 
 if __name__ == "__main__":
     main()
