@@ -19,8 +19,21 @@ def import_planes():
 
     db.commit()
 
+def import_airlines():
+    f = open("data/airlines.dat")
+    reader = csv.reader(f)
+    for ofid, name, alias, iata_code, icao_code, callsign, country, active in reader:
+        db.execute("INSERT INTO airlines (ofid, name, alias, iata_code, icao_code, callsign, country, active) VALUES (:ofid, :name, :alias, :iata_code, :icao_code, :callsign, :country, :active)",
+        {"ofid":ofid, "name":name, "alias":alias, "iata_code":iata_code, "icao_code":icao_code, "callsign":callsign, "country":country, "active":active})
+        print(f"Added {name} with callsign {callsign} and alias {alias} of {country}.")
+
+    db.commit()
+
+    
 def main():
-    import_planes()
+    #import_planes()
+    import_airlines()
+
 
 if __name__ == "__main__":
     main()
