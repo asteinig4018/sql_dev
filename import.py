@@ -29,10 +29,20 @@ def import_airlines():
 
     db.commit()
 
-    
+def import_countries():
+    f=open("data/countries.dat")
+    reader = csv.reader(f)
+    for name, iso_code, dafif_code in reader:
+        db.execute("INSERT INTO countries (name, iso_code, dafif_code) VALUES (:name, :iso_code, :dafif_code)",
+        {"name":name, "iso_code":iso_code, "dafif_code":dafif_code})
+        print(f"Added {name} {iso_code}.")
+    db.commit()
+
+
 def main():
     #import_planes()
-    import_airlines()
+    #import_airlines()
+    import_countries()
 
 
 if __name__ == "__main__":
