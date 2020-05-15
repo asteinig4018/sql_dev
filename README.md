@@ -4,7 +4,7 @@ See available routes between two cities with Everest Travels.
 
 Another simple quarantine project to learn some web dev and databases and to act as a reference for future project using similar technologies.
 
-![demo image](/demo/demo.png)
+<img src="demo/demo.PNG" width=40%> &nbsp;<img src="demo/demo2.png" width=50% >
 
 ## Technologies Used
 
