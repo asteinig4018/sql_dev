@@ -7,4 +7,38 @@
 {% block body %}
     <p>hello and welcome</p>
     <p>ready for a flight</p>
+
+    <h3>Select flight by city</h3>
+    <form action="{{ url_for('check_flight') }}" method="POST" class="form-group">
+        <div>
+            <input type="text" name="origin" placeholder="Origin">
+        </div>
+        <div>
+            <input type="text" name="destination" placeholder="Destination">
+        </div>
+        <div>
+            <input type="text" name="airline" placeholder="Airline (optional)">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-lg btn-info">Submit</button>
+        </div>
+        <div>
+            <button type="reset" class="btn btn-lg btn-warning">Reset</button>
+        </div>
+        <datalist id="origin">
+            {% for origin in origins  %}
+                <option value="{{ origin }}">
+            {% endfor %}
+        </datalist>
+        <datalist id="destination">
+            {% for destination in destinations %}
+                <option value="{{ destination }}">
+            {% endfor %}
+        </datalist>
+        <datalist id="airline">
+            {% for airline in arilines %}
+                <option value="{{ airline }}">
+            {% endfor %}
+        </datalist>
+    </form>
 {% endblock %}

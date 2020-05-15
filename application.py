@@ -12,4 +12,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    origins = list()
+    destinations = list()
+    airlines = list()
+    return render_template("index.html", origins=origins, destinations=destinations, airlines=airlines)
+
+@app.route("/check_flight", methods=["GET","POST"])
+def check_flight():
+    pass
