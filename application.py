@@ -57,5 +57,18 @@ def check_flight():
 
         #search routes table by airports
         routes = db.execute(f"SELECT * FROM routes WHERE source_airport_id IN {origins_id_str} AND destination_airport_id IN {destinations_id_str}").fetchall()
+        #get list of ids
+        routes_airline_id = [i[2] for i in routes]
+        #create string to query
+        routes_airline_id_str= "("+ str(routes_airline_id)[1:-1] +")"
+        #query database and receive mapping to limit database queries to one
+        airline_names = db.execute(f"SELECT ofid,name FROM airlines WHERE ofid IN {routes_airline_id_str}").fetchall()
+        ofid_list = [i[0] for i in airline_names]
+        name_list = [i[1] for i in airline_names]
+        routes_airline_names = list()
+        for airline_id in routes_airline_id:
+            routes_airline_names.append(name_list[ofid_list.index(airline_id)])
 
-    return render_template("check_flight.html", routes=routes)
+        route_data_packet = zip(routes,routes_airline_names)
+
+    return render_template("check_flight.html", route_data_packet=route_data_packet, origin_city=origin_city, destination_city=destination_city)

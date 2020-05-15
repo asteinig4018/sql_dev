@@ -7,6 +7,53 @@
 {% block body %}
     <p>words</p>
 
+    <div>
+        <table class="table">
+            <tr>
+                <th scope="col">
+                    ORGIN AIRPORT
+                </th>
+                <th scope="col">
+                    ORGIN CITY
+                </th>
+                <th scope="col">
+                    DESTINATION AIRPORT
+                </th>
+                <th scope="col">
+                    DESTINATION CITY
+                </th>
+                <th scope ="col"> 
+                    AIRLINE
+                </th>
+                <th scope = "col">
+                    STOPS
+                </th>
+            </tr>
+            {% for route, airline_name in route_data_packet %}
+            <tr>
+                <td>
+                    {{ route.source_airport }}
+                </td>
+                <td>
+                    {{ origin_city }}
+                </td>
+                <td>
+                    {{ route.destination_airport }}
+                </td>
+                <td>
+                    {{ destination_city }}
+                </td>
+                <td>
+                    {{ airline_name }}
+                </td>
+                <td>
+                    {{ route.stops }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
 
     <a href="{{ url_for('index') }}">Home...</a>
 {% endblock %}
