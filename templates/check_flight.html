@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Check Flight!
+    Check Flights
 {% endblock %}
 
 {% block body %}
@@ -28,6 +28,9 @@
                 <th scope = "col">
                     STOPS
                 </th>
+                <th scope="col">
+                    SELECT
+                </th>
             </tr>
             {% for route, airline_name in route_data_packet %}
             <tr>
@@ -48,6 +51,9 @@
                 </td>
                 <td>
                     {{ route.stops }}
+                </td>
+                <td>
+                    <a href="{{ url_for('routes', route_id=route.id) }}">SELECT</a>
                 </td>
             </tr>
             {% endfor %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Flight
+{% endblock %}
+
+{% block body %}
+    
+    <div>
+        <table class="table">
+            <tr>
+                <th scope="row">
+                    ROUTE #
+                </th>
+                <td>
+                    {{ route_id }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    AIRLINE
+                </th>
+                <td>
+                    {{ airline_name }}
+                </td>
+            </tr>
+            <tr scope="row">
+                <th scope="row">
+                    ORIGIN AIRPORT
+                </th>
+                <td>
+                    {{ origin_airport }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    ORIGIN CITY
+                </th>
+                <td>
+                    {{ origin_city }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    DESTINATION AIRPORT
+                </th>
+                <td>
+                    {{ destination_airport }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    DESTINATION CITY
+                </th>
+                <td>
+                    {{ destination_city }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    PLANE
+                </th>
+                <td>
+                    {{ plane }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div>
+        <a href="{{ url_for('index') }}">Home...</a>
+    </div>
+{% endblock %}

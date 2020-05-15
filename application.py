@@ -72,3 +72,39 @@ def check_flight():
         route_data_packet = zip(routes,routes_airline_names)
 
     return render_template("check_flight.html", route_data_packet=route_data_packet, origin_city=origin_city, destination_city=destination_city)
+
+
+@app.route("/routes/<int:route_id>", methods=["GET"])
+def routes(route_id):
+    #get route info
+    route_info = db.execute(f"SELECT * FROM routes WHERE id={route_id}").fetchall()
+    #extract airline id
+    airline_id = str([i[2] for i in route_info])[1:-1]
+    #get airine info
+    airline_info = db.execute(f"SELECT * FROM airlines WHERE ofid = {airline_id}").fetchall()
+    airline_name = str([i[2] for i in airline_info])[2:-2]
+    #extract plane/equipment id
+    plane_id = str([i[9] for i in route_info])[2:-2].split()
+    #get plane info
+    plane_info = list()
+    for pid in plane_id:
+        plane_info.append(db.execute(f"SELECT * FROM planes WHERE iata_code = '{pid}'").fetchall())
+    #extract source and destination airport id
+    source_airport_id = str([i[4] for i in route_info])[1:-1]
+    destination_airport_id = str([i[6] for i in route_info])[1:-1]
+    #get airport info
+    source_airport_info = db.execute(f"SELECT * FROM airports WHERE id = {source_airport_id}").fetchall()
+    destination_airport_info = db.execute(f"SELECT * FROM airports WHERE id = {destination_airport_id}").fetchall()
+
+    origin_city = str([i[2] for i in source_airport_info])[2:-2] + ", " + str([i[3] for i in source_airport_info])[2:-2]
+    origin_airport = str([i[1] for i in source_airport_info])[2:-2]
+
+    destination_city = str([i[2] for i in destination_airport_info])[2:-2] + ", " + str([i[3] for i in destination_airport_info])[2:-2]
+    destination_airport = str([i[1] for i in destination_airport_info])[2:-2]    
+
+    plane = ""
+    for plane_i in plane_info:
+        plane += str([i[1] for i in plane_i])[2:-2] +", "
+    plane = plane[:-2]  
+
+    return render_template("route_info.html", route_id=route_id, airline_name=airline_name, origin_airport=origin_airport, origin_city=origin_city, destination_airport=destination_airport, destination_city=destination_city, plane=plane)
