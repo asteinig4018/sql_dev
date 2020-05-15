@@ -15,16 +15,16 @@
                 <div class="col-3">
                     <input list="origins" name="origin" placeholder="Origin">
                     <datalist id="origins">
-                        {% for airport in airports  %}
-                            <option value="{{ airport.city }}">
+                        {% for city in cities  %}
+                            <option value="{{ city }}">
                         {% endfor %}
                     </datalist>
                 </div>
                 <div class="col-3">  
                     <input list="destinations" name="destination" placeholder="Destination">
                     <datalist id="destinations">
-                        {% for airport in airports %}
-                            <option value="{{ airport.city }}">
+                        {% for city in cities %}
+                            <option value="{{ city }}">
                         {% endfor %}
                     </datalist>
                 </div>
