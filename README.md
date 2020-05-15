@@ -4,6 +4,8 @@ See available routes between two cities with Everest Travels.
 
 Another simple quarantine project to learn some web dev and databases and to act as a reference for future project using similar technologies.
 
+![demo image](/demo/demo.png)
+
 ## Technologies Used
 
 * Flask 1.1.2
@@ -24,10 +26,10 @@ Setup a postgres database and use this to generate a URI. Place the URI in a fil
 
 ``` import.py ``` used to import data into the tables set up with the sql files using sqlalchemy.
 Requires:
-    1. database is setup with tables
-    2. database is active
-    3. URI is properly configured in ``` config.py ```
-    4. data files are in the data directory
+1. database is setup with tables
+2. database is active
+3. URI is properly configured in ``` config.py ```
+4. data files are in the data directory
 
 This script has an extremely long output (because it is in debug mode) so suggested to run as:
 ```
@@ -65,3 +67,12 @@ sudo service postgresql stop
 ### Develop
 
 When developing, it is useful to run ``` watch_css.sh ``` to have sass automatically update ``` style.css ``` based on changes to the sass file. 
+
+## Data
+
+All data is from OpenFlights and is historical. 
+https://openflights.org/data.html
+
+## Logo
+
+Logo was made by me in Adobe Illustrator
