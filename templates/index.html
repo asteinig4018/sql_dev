@@ -10,35 +10,44 @@
 
     <h3>Select flight by city</h3>
     <form action="{{ url_for('check_flight') }}" method="POST" class="form-group">
-        <div>
-            <input type="text" name="origin" placeholder="Origin">
+        <div class="containers">
+            <div class="row">
+                <div class="col-3">
+                    <input list="origins" name="origin" placeholder="Origin">
+                    <datalist id="origins">
+                        {% for airport in airports  %}
+                            <option value="{{ airport.city }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-3">  
+                    <input list="destinations" name="destination" placeholder="Destination">
+                    <datalist id="destinations">
+                        {% for airport in airports %}
+                            <option value="{{ airport.city }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-3"> 
+                    <input list="airlines" name="airline" placeholder="Airline (optional)">
+                    <datalist id="airlines">
+                        {% for airline in airlines %}
+                            <option value="{{ airline.name }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="text" name="destination" placeholder="Destination">
+        <div class="containers">
+            <div class="row">
+                <div class="col- ext_padding2">
+                    <button type="submit" class="btn btn-lg btn-info">Submit</button>
+                </div>
+                <div class="col- ext_padding2">  
+                    <button type="reset" class="btn btn-lg btn-warning">Reset</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="text" name="airline" placeholder="Airline (optional)">
-        </div>
-        <div>
-            <button type="submit" class="btn btn-lg btn-info">Submit</button>
-        </div>
-        <div>
-            <button type="reset" class="btn btn-lg btn-warning">Reset</button>
-        </div>
-        <datalist id="origin">
-            {% for origin in origins  %}
-                <option value="{{ origin }}">
-            {% endfor %}
-        </datalist>
-        <datalist id="destination">
-            {% for destination in destinations %}
-                <option value="{{ destination }}">
-            {% endfor %}
-        </datalist>
-        <datalist id="airline">
-            {% for airline in arilines %}
-                <option value="{{ airline }}">
-            {% endfor %}
-        </datalist>
+        
     </form>
 {% endblock %}

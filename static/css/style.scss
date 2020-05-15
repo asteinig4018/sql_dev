@@ -1,4 +1,5 @@
 $margin1: 2.5%;
+$margin2: 1%;
 
 .ext_margin{
     margin: $margin1
@@ -6,6 +7,10 @@ $margin1: 2.5%;
 
 .ext_padding{
     padding: $margin1
+}
+
+.ext_padding2{
+    padding: $margin2
 }
 
 header{
