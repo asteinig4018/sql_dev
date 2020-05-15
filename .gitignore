@@ -1,6 +1,6 @@
 config.py
 output.txt
 __pycache__/
-static/css/style.css
+
 static/css/style.css.map
 .sass-cache/

@@ -1,1 +1,28 @@
+$margin1: 2.5%;
 
+.ext_margin{
+    margin: $margin1
+}
+
+.ext_padding{
+    padding: $margin1
+}
+
+header{
+    background-color: darkcyan;
+    color: whitesmoke;
+}
+
+.logo{
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+h1{
+    padding-top:20px;
+}
+
+.container{
+    margin-left: 0px;
+}

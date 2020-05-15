@@ -1,0 +1,22 @@
+.ext_margin {
+  margin: 2.5%; }
+
+.ext_padding {
+  padding: 2.5%; }
+
+header {
+  background-color: darkcyan;
+  color: whitesmoke; }
+
+.logo {
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px; }
+
+h1 {
+  padding-top: 20px; }
+
+.container {
+  margin-left: 0px; }
+
+/*# sourceMappingURL=style.css.map */
